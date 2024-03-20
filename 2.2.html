@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Addition App</title>
+</head>
+<body>
+  <h1>Addition App</h1>
+  <div>
+    <label for="num1">Number 1:</label>
+    <input type="text" id="num1" name="num1">
+  </div>
+  <div>
+    <label for="num2">Number 2:</label>
+    <input type="text" id="num2" name="num2">
+  </div>
+  <button onclick="addNumbers()">Add Numbers</button>
+  <p id="result"></p>
+
+  <script>
+    function addNumbers() {
+      const num1 = document.getElementById('num1').value;
+      const num2 = document.getElementById('num2').value;
+
+      fetch(`http://localhost:3000/add/${num1}/${num2}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('result').textContent = `The sum is: ${data}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+</html>
